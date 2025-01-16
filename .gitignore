@@ -1,0 +1,11 @@
+env
+venv*
+.idea
+.log
+.pytest_cache
+__pycache__/
+environments/local/
+*.back
+.DS_Store
+benchmark/
+scripts/plots
