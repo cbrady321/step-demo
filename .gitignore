@@ -9,3 +9,5 @@ environments/local/
 .DS_Store
 benchmark/
 scripts/plots
+
+environments/config.conf
