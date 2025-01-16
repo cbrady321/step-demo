@@ -6,7 +6,7 @@ from pyhocon import ConfigFactory
 
 from src.definitions import CONFIG_PATH
 from src.hello_world import run_hello_world_demo
-from step_functions import (
+from src.step_functions import (
     create_step_function, delete_step_function,
     get_step_function_adl, list_step_functions,
     update_step_function
