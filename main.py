@@ -4,19 +4,19 @@ import os
 import boto3
 from pyhocon import ConfigFactory
 
-from definitions import CONFIG_PATH
-from hello_world import run_hello_world_demo
+from src.definitions import CONFIG_PATH
+from src.hello_world import run_hello_world_demo
 from step_functions import (
     create_step_function, delete_step_function,
     get_step_function_adl, list_step_functions,
     update_step_function
 )
-from event_bridges import (
+from src.event_bridges import (
     create_event_bus, list_event_buses,
     create_event_rule, list_event_rules,
     delete_event_bus, delete_event_rule
 )
-from activities import (
+from src.activities import (
     create_activity, describe_activity,
     list_activities, delete_activity
 )
