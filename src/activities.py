@@ -22,22 +22,30 @@ def create_activity(client: BaseClient, activity_name: str) -> Optional[str]:
         print(f"Error creating Activity: {e}")
         return None
 
-def describe_activity(client: BaseClient, activity_arn: str) -> Optional[Dict]:
+def describe_activity(client: BaseClient, activity_name: str) -> Optional[str]:
     """
-    Describe an activity.
+    Describe an activity by name and return its ARN.
 
     Args:
         client: Boto3 Step Functions client
-        activity_arn: The ARN of the activity to describe
+        activity_name: The name of the activity to describe
 
     Returns:
-        Dict containing the activity's description if successful, None otherwise
+        The ARN of the activity if found, None otherwise
     """
     try:
-        response = client.describe_activity(activityArn=activity_arn)
-        print(f"\nActivity Description for {activity_arn}:")
-        print(json.dumps(response, indent=2))
-        return response
+        # List all activities
+        activities = client.list_activities()
+        for activity in activities.get("activities", []):
+            if activity["name"] == activity_name:
+                # Describe the specific activity by ARN
+                response = client.describe_activity(activityArn=activity["activityArn"])
+                print(f"\nActivity Description for '{activity_name}':")
+                print(json.dumps(response, indent=2))
+                return activity["activityArn"]
+
+        print(f"Activity '{activity_name}' not found.")
+        return None
     except Exception as e:
         print(f"Error describing Activity: {e}")
         return None

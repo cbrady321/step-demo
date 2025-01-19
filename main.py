@@ -139,12 +139,12 @@ def demo_activities(stepfunctions):
     # List activities
     list_activities(stepfunctions)
 
-    # Describe the newly created activity
-    describe_activity(stepfunctions, activity_arn)
+    # Describe the newly created activity by name
+    describe_activity(stepfunctions, activity_name)
 
     # Delete activity
     print("\nDeleting activity:")
-    if delete_activity(stepfunctions, activity_arn):
+    if activity_arn and delete_activity(stepfunctions, activity_arn):
         print("\nVerifying activity deletion:")
         list_activities(stepfunctions)
 
